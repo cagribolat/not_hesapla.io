@@ -14,8 +14,7 @@
             height: 100vh;
             margin: 0;
             background-image: url('https://i.pinimg.com/originals/4f/97/1b/4f971b0d6bacdd50c85333a2af80ddaf.gif');
-            background-size: 320px 213px; /* Gif boyutu */
-            background-repeat: no-repeat; /* Gif'in tek sefer görünmesini sağlar */
+            background-size: cover;
         }
         h1 {
             margin-bottom: 20px;
@@ -25,5 +24,14 @@
     </style>
 </head>
 <body>
-        
+
+    <h1>NOT HESAPLAYICI</h1>
+
+    <!-- Geri kalan HTML kodları buraya gelecek -->
+
+    <script>
+        // JavaScript kodları buraya gelecek (eğer varsa)
+    </script>
+
+</body>
 </html>
