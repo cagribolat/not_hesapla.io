@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +23,14 @@ new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
             new Ders(5, "TIP TERİMLERİ")
     <!-- Not hesaplama formu -->
     <form id="gradeForm">
-        <label for="Ders">Course Number:</label>
-        <input type="text" id="courseNumber" name="courseNumber">
+        <label for="courseNumber">Ders Numarası:</label>
+        <input type="text" id="Ders Numarası" name="Ders Numarası">
 
-        <label for="midtermGrade">Midterm Grade:</label>
-        <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
+        <label for="Ara Sınav">Ara Sınav:</label>
+        <input type="number" id="Ara Sınav" name="Ara Sınav" step="0.1">
 
-        <label for="finalGrade">Final Grade:</label>
-        <input type="number" id="finalGrade" name="finalGrade" step="0.1">
+        <label for="Final Sınavı">Final Sınavı:</label>
+        <input type="number" id="final Sınavı" name="final Sınavı" step="0.1">
 
         <button type="button" onclick="calculateGrade()">Calculate Grade</button>
     </form>
@@ -59,6 +60,13 @@ new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
                 this.durum = this.gecme_notu >= 50 ? "Geçtiniz" : "Geçemediniz";
             }
         }
+
+        var dersler = [
+            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
+            new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
+            new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
+            new Ders(4, "TIBBİ BELGELEME"),
+            new Ders(5, "TIP TERİMLERİ")
         ];
 
         function ders_isimleri_listele(dersler) {
