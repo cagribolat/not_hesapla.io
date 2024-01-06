@@ -36,31 +36,16 @@
             var midtermGrade = parseFloat(document.getElementById("midtermGrade").value);
             var finalGrade = parseFloat(document.getElementById("finalGrade").value);
 
-            // Python kodunu çağır ve sonucu al
-            var result = calculateGradeInPython(courseNumber, courseName, midtermGrade, finalGrade);
+            // Notları hesapla
+            var passStatus = (midtermGrade * 0.3 + finalGrade * 0.7) >= 50 ? "Passed" : "Failed";
 
             // Sonucu HTML'e ekle
             var resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = result;
-        }
-
-        // Python kodunu çağırmak için bir AJAX isteği kullanabilirsiniz
-        function calculateGradeInPython(courseNumber, courseName, midtermGrade, finalGrade) {
-            var result;
-
-            // AJAX isteği yap
-            // Bu örnekte, sadece statik bir sonuç döndürdüm, gerçekte bu kısmı kendi Python API'nize uygun şekilde düzenlemeniz gerekecek
-            // Örneğin, bir Flask veya Django API kullanabilirsiniz
-            // Bu noktada, API'nize isteği gönderip geri dönen sonucu 'result' değişkenine atabilirsiniz
-
-            // Örnek statik sonuç
-            result = "Ders Numarası: " + courseNumber +
-                     "<br>Ders Adı: " + courseName +
-                     "<br>Ara Sınav Notu: " + midtermGrade +
-                     "<br>Final Sınav Notu: " + finalGrade +
-                     "<br>Geçme Durumu: Geçtiniz";  // Burada API'nizden dönen sonucu kullanabilirsiniz
-
-            return result;
+            resultContainer.innerHTML = "<strong>Course Number:</strong> " + courseNumber +
+                                        "<br><strong>Course Name:</strong> " + courseName +
+                                        "<br><strong>Midterm Grade:</strong> " + midtermGrade +
+                                        "<br><strong>Final Grade:</strong> " + finalGrade +
+                                        "<br><strong>Pass Status:</strong> " + passStatus;
         }
     </script>
 
