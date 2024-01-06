@@ -101,3 +101,32 @@
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
             resultContainer.innerHTML += "<p>Durum:
+                        resultContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
+        }
+
+        // Sayfa yüklendiğinde ders isimlerini göster
+        ders_isimleri_listele(dersler);
+
+        function calculateGrade() {
+            var selectedCourseNumber = document.getElementById("courseNumber").value;
+            var selectedDers = null;
+
+            for (var i = 0; i < dersler.length; i++) {
+                if (dersler[i].numara == selectedCourseNumber) {
+                    selectedDers = dersler[i];
+                    break;
+                }
+            }
+
+            if (selectedDers) {
+                selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
+                selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
+                selectedDers.not_hesapla();
+                notlari_goster(selectedDers);
+            }
+        }
+    </script>
+
+</body>
+</html>
+
