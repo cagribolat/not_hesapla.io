@@ -96,7 +96,7 @@
             resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
+            resultContainer.innerHTML += "<p>Geçme Notu: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.gecme_notu + "</span></p>";
             resultContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
         }
 
