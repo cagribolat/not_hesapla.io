@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AÖF NOT HESAPLAYICI</title>
+    <title>NOT HESAPLAYICI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji-awesome.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <style>
         body {
@@ -14,7 +14,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://wallpapercave.com/wp/wp2791405.jpg');
+            background-image: url('https://wallpapercave.com/uwp/uwp4193688.jpeg');
             background-size: cover;
         }
         h1 {
@@ -66,36 +66,42 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
+            display: none;
         }
         #dersListesi li:hover {
             background-color: #e0e0e0;
+        }
+        #dersListesi li:nth-of-type(1) {
+            display: none; /* İlk öğeyi gizle */
+        }
+        /* Ara Sınav ve Final Sınavı'nı kalın yap */
+        label[for="midtermGrade"], label[for="finalGrade"] {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h1>AÖF NOT HESAPLAYICI</h1>
-
-    <!-- Ders listesi -->
-    <div>
-        <h2>Dersler</h2>
-        <select id="courseNumber" name="courseNumber">
-            <option value="">Ders Seçiniz</option>
-            <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
-            <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
-            <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
-            <option value="4">TIBBİ BELGELEME</option>
-            <option value="5">TIP TERİMLERİ</option>
-        </select>
-    </div>
+    <h1>NOT HESAPLAYICI</h1>
 
     <!-- Not hesaplama formu -->
     <div class="form-container">
         <form id="gradeForm">
-            <label for="midtermGrade">Ara Sınav:</label>
+            <label for="courseNumber">Ders Numarası:</label>
+            <select id="courseNumber" name="courseNumber">
+                <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
+                <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
+                <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
+                <option value="4">TIBBİ BELGELEME</option>
+                <option value="5">TIP TERİMLERİ</option>
+            </select>
+
+            <!-- Ara Sınav -->
+            <label for="midtermGrade" style="font-weight: bold;">Ara Sınav:</label>
             <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
 
-            <label for="finalGrade">Final Sınavı:</label>
+            <!-- Final Sınavı -->
+            <label for="finalGrade" style="font-weight: bold;">Final Sınavı:</label>
             <input type="number" id="finalGrade" name="finalGrade" step="0.1">
 
             <button type="button" onclick="calculateGrade()">Hesapla</button>
@@ -127,28 +133,8 @@
             new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
             new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
             new Ders(4, "TIBBİ BELGELEME"),
-            new Ders(5, "TIP TERİMLERİ"),
-            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"), // Test için aynı dersi ekledik
+            new Ders(5, "TIP TERİMLERİ")
         ];
-
-        function ders_isimleri_listele(dersler) {
-            var dersListesi = document.getElementById("courseNumber");
-
-            // Dersleri tekilleştirme
-            var uniqueDersler = [];
-            dersler.forEach(ders => {
-                if (!uniqueDersler.some(uniqueDers => uniqueDers.ad === ders.ad)) {
-                    uniqueDersler.push(ders);
-                }
-            });
-
-            uniqueDersler.forEach((ders, index) => {
-                var option = document.createElement("option");
-                option.value = index + 1;
-                option.textContent = ders.ad;
-                dersListesi.appendChild(option);
-            });
-        }
 
         function notlari_goster(ders) {
             var resultContainer = document.getElementById("resultContainer");
@@ -172,7 +158,7 @@
             var selectedDers = null;
 
             for (var i = 0; i < dersler.length; i++) {
-                if (i + 1 == selectedCourseNumber) {
+                if (dersler[i].numara == selectedCourseNumber) {
                     selectedDers = dersler[i];
                     break;
                 }
