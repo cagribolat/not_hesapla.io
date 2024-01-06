@@ -147,6 +147,12 @@
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
             resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
+
+            // Emoji ekleme
+            var emojiElement = document.createElement("span");
+            emojiElement.innerHTML = ders.gecme_notu >= 50 ? "&#x1F604;" : "&#x1F641;";
+            emojiElement.style.fontSize = "24px";
+            resultContainer.appendChild(emojiElement);
         }
 
         // Sayfa yüklendiğinde ders isimlerini göster
