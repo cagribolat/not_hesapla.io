@@ -127,17 +127,27 @@
             new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
             new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
             new Ders(4, "TIBBİ BELGELEME"),
-            new Ders(5, "TIP TERİMLERİ")
+            new Ders(5, "TIP TERİMLERİ"),
+            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"), // Test için aynı dersi ekledik
         ];
 
         function ders_isimleri_listele(dersler) {
             var dersListesi = document.getElementById("courseNumber");
-            for (var i = 0; i < dersler.length; i++) {
+
+            // Dersleri tekilleştirme
+            var uniqueDersler = [];
+            dersler.forEach(ders => {
+                if (!uniqueDersler.some(uniqueDers => uniqueDers.ad === ders.ad)) {
+                    uniqueDersler.push(ders);
+                }
+            });
+
+            uniqueDersler.forEach((ders, index) => {
                 var option = document.createElement("option");
-                option.value = i + 1;
-                option.textContent = dersler[i].ad;
+                option.value = index + 1;
+                option.textContent = ders.ad;
                 dersListesi.appendChild(option);
-            }
+            });
         }
 
         function notlari_goster(ders) {
@@ -156,9 +166,6 @@
             emojiElement.style.fontSize = "24px";
             resultContainer.appendChild(emojiElement);
         }
-
-        // Sayfa yüklendiğinde ders isimlerini göster
-        ders_isimleri_listele(dersler);
 
         function calculateGrade() {
             var selectedCourseNumber = document.getElementById("courseNumber").value;
