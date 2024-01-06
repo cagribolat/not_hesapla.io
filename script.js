@@ -5,12 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #dersListesi {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #gradeForm {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        input {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultContainer {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
         .pass {
-            border: 2px solid green;
+            border-color: green;
         }
 
         .fail {
-            border: 2px solid red;
+            border-color: red;
+        }
+
+        #emoji {
+            font-size: 30px;
         }
     </style>
     <title>NOT HESAPLAYICI</title>
@@ -40,7 +93,10 @@
     </form>
 
     <!-- Notları gösterme bölümü -->
-    <div id="resultContainer"></div>
+    <div id="resultContainer">
+        <div id="emoji"></div>
+        <div id="notlar"></div>
+    </div>
 
     <script>
         class Ders {
@@ -100,17 +156,28 @@
 
         function notlari_goster(ders) {
             var resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
-            resultContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
-            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
-            resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Geçme Notu: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.gecme_notu + "</span></p>";
-            resultContainer.innerHTML += "<p>Durum: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + ";'>" + ders.durum + "</span></p>";
+            var emojiContainer = document.getElementById("emoji");
+            var notlarContainer = document.getElementById("notlar");
+
+            emojiContainer.innerHTML = "";
+            notlarContainer.innerHTML = "";
+
+            emojiContainer.innerHTML = "<span style='font-size: 30px;'>" + (ders.gecme_notu >= 50 ? "😊" : "☹️") + "</span>";
+
+            notlarContainer.innerHTML += "<h3>Seçilen Dersin Notları</h3>";
+            notlarContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
+            notlarContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
+            notlarContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
+            notlarContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
+            notlarContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
+            notlarContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
+
+            // Geçer not ise yeşil, geçer not değilse kırmızı çerçeve uygula
             resultContainer.classList.remove("pass", "fail");
             resultContainer.classList.add(ders.gecme_notu >= 50 ? "pass" : "fail");
         }
 
+        // Sayfa yüklendiğinde ders isimlerini göster
         ders_isimleri_listele(dersler);
 
         function calculateGrade() {
