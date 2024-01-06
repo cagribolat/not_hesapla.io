@@ -99,6 +99,7 @@
             resultContainer.innerHTML += "<p>Geçme Notu: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.gecme_notu + "</span></p>";
             resultContainer.innerHTML += "<p>Durum: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.durum + "</span></p>";
 
+
         }
 
         // Sayfa yüklendiğinde ders isimlerini göster
