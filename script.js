@@ -14,6 +14,8 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background-image: url('https://wallpapercave.com/uwp/uwp4193688.jpeg');
+            background-size: cover;
         }
         h1 {
             margin-bottom: 20px;
@@ -51,17 +53,33 @@
         #gradeForm button {
             margin-top: 10px;
         }
+        #dersListesi {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #dersListesi li {
+            cursor: pointer;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #dersListesi li:hover {
+            background-color: #e0e0e0;
+        }
+        #dersListesi li::before {
+            content: none; /* Marker'ları kaldır */
+        }
+        #dersListesi li:nth-of-type(1) {
+            display: none; /* İlk öğeyi gizle */
+        }
     </style>
 </head>
 <body>
 
     <h1>NOT HESAPLAYICI</h1>
-
-    <!-- Ders listesi -->
-    <div>
-        <h2>Dersler</h2>
-        <ul id="dersListesi"></ul>
-    </div>
 
     <!-- Not hesaplama formu -->
     <div class="form-container">
@@ -117,7 +135,7 @@
             var dersListesi = document.getElementById("dersListesi");
             for (var i = 0; i < dersler.length; i++) {
                 var listItem = document.createElement("li");
-                listItem.textContent = dersler[i].numara + " " + dersler[i].ad;
+                listItem.textContent = dersler[i].numara + ". " + dersler[i].ad;
                 listItem.addEventListener("click", function () {
                     var selectedCourseNumber = this.textContent.split(" ")[0];
                     var selectedDers = null;
