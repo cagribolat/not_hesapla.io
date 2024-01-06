@@ -7,7 +7,23 @@
     <title>NOT HESAPLAYICI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji-awesome.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <style>
-        /* CSS Stilleri */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('path/to/your/https://i.pinimg.com/originals/4f/97/1b/4f971b0d6bacdd50c85333a2af80ddaf.gif') center center fixed;
+            background-size: cover;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: white; /* Yazı rengi */
+        }
+
+        /* Diğer stiller buraya eklenir */
     </style>
 </head>
 <body>
@@ -39,81 +55,9 @@
     <!-- Notları gösterme bölümü -->
     <div id="resultContainer"></div>
 
+    <!-- Kodların Görünmeyeceği Kısım -->
     <script>
-        class Ders {
-            constructor(numara, ad) {
-                this.numara = numara;
-                this.ad = ad;
-                this.ara_sinav_puani = 0;
-                this.final_sinav_puani = 0;
-                this.gecme_notu = 0;
-                this.durum = "";
-            }
-
-            notlari_gir() {
-                this.ara_sinav_puani = parseFloat(prompt("Ara Sınav Puanı: "));
-                this.final_sinav_puani = parseFloat(prompt("Final Sınavı Puanı: "));
-                this.not_hesapla();
-            }
-
-            not_hesapla() {
-                this.gecme_notu = (this.ara_sinav_puani * 0.3) + (this.final_sinav_puani * 0.7);
-                this.durum = this.gecme_notu >= 50 ? "Geçtiniz" : "Geçemediniz";
-            }
-        }
-
-        var dersler = [
-            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
-            new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
-            new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
-            new Ders(4, "TIBBİ BELGELEME"),
-            new Ders(5, "TIP TERİMLERİ")
-        ];
-
-        function ders_isimleri_listele(dersler) {
-            var dersListesi = document.getElementById("dersListesi");
-            for (var i = 0; i < dersler.length; i++) {
-                var listItem = document.createElement("li");
-                listItem.textContent = dersler[i].numara + " " + dersler[i].ad;
-                listItem.addEventListener("click", function () {
-                    var selectedCourseNumber = this.textContent.split(" ")[0];
-                    var selectedDers = null;
-
-                    for (var j = 0; j < dersler.length; j++) {
-                        if (dersler[j].numara == selectedCourseNumber) {
-                            selectedDers = dersler[j];
-                            break;
-                        }
-                    }
-
-                    if (selectedDers) {
-                        selectedDers.notlari_gir();
-                        notlari_goster(selectedDers);
-                    }
-                });
-                dersListesi.appendChild(listItem);
-            }
-        }
-
-        function notlari_goster(ders) {
-            var resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
-            resultContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
-            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
-            resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
-            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
-
-            // Emoji ekleme
-            var emojiElement = document.createElement("span");
-            emojiElement.innerHTML = ders.gecme_notu >= 50 ? "&#x1F604;" : "&#x1F641;";
-            emojiElement.style.fontSize = "24px";
-            resultContainer.appendChild(emojiElement);
-        }
-
-        // Sayfa yüklendiğinde ders isimlerini göster
-        ders_isimleri_listele(dersler);
+        // Ders sınıfı ve diğer kodlar...
 
         function calculateGrade() {
             var selectedCourseNumber = document.getElementById("courseNumber").value;
@@ -136,8 +80,12 @@
                 document.getElementById("courseNumber").value = "";
                 document.getElementById("midtermGrade").value = "";
                 document.getElementById("finalGrade").value = "";
+
+                // Sayfayı yeniden yükle
+                window.location.reload();
             }
         }
     </script>
+    <!-- Kodların Görünmeyeceği Kısım Sonu -->
 </body>
 </html>
