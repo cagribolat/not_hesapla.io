@@ -14,7 +14,8 @@
             height: 100vh;
             margin: 0;
             background-image: url('https://i.pinimg.com/originals/4f/97/1b/4f971b0d6bacdd50c85333a2af80ddaf.gif');
-            background-size: cover;
+            background-size: 320px 213px; /* Gif boyutu */
+            background-repeat: no-repeat; /* Gif'in tek sefer görünmesini sağlar */
         }
         h1 {
             margin-bottom: 20px;
