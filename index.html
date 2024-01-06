@@ -8,11 +8,13 @@
         .pass {
             border: 2px solid green;
             margin-right: auto;
+            margin-left: 2px;
         }
 
         .fail {
             border: 2px solid red;
             margin-right: auto;
+            margin-left: 2px;
         }
     </style>
     <title>NOT HESAPLAYICI</title>
@@ -113,6 +115,7 @@
             resultContainer.classList.add(ders.gecme_notu >= 50 ? "pass" : "fail");
         }
 
+        // Sayfa yüklendiğinde ders isimlerini göster
         ders_isimleri_listele(dersler);
 
         function calculateGrade() {
