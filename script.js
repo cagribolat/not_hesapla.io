@@ -8,23 +8,47 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
         }
+        h1 {
+            margin-bottom: 20px;
+        }
         #resultContainer {
-            border: 2px solid;
             padding: 10px;
             border-radius: 10px;
             margin-top: 20px;
             display: inline-block;
         }
         .pass {
-            border-color: green;
+            border: 2px solid green;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10px;
         }
         .fail {
-            border-color: red;
+            border: 2px solid red;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #gradeForm button {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -39,18 +63,20 @@
     </div>
 
     <!-- Not hesaplama formu -->
-    <form id="gradeForm">
-        <label for="courseNumber">Ders Numarası:</label>
-        <input type="text" id="courseNumber" name="courseNumber">
+    <div class="form-container">
+        <form id="gradeForm">
+            <label for="courseNumber">Ders Numarası:</label>
+            <input type="text" id="courseNumber" name="courseNumber">
 
-        <label for="midtermGrade">Ara Sınav:</label>
-        <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
+            <label for="midtermGrade">Ara Sınav:</label>
+            <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
 
-        <label for="finalGrade">Final Sınavı:</label>
-        <input type="number" id="finalGrade" name="finalGrade" step="0.1">
+            <label for="finalGrade">Final Sınavı:</label>
+            <input type="number" id="finalGrade" name="finalGrade" step="0.1">
 
-        <button type="button" onclick="calculateGrade()">Hesapla</button>
-    </form>
+            <button type="button" onclick="calculateGrade()">Hesapla</button>
+        </form>
+    </div>
 
     <!-- Notları gösterme bölümü -->
     <div id="resultContainer"></div>
@@ -118,15 +144,8 @@
             resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Geçme Notu: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.gecme_notu + "</span></p>";
-            resultContainer.innerHTML += "<p>Durum: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.durum + "</span></p>";
-
-            // Geçer not ise yeşil, geçer not değilse kırmızı çerçeve uygula
-            resultContainer.classList.remove("pass", "fail");
-            resultContainer.classList.add(ders.gecme_notu >= 50 ? "pass" : "fail");
-
-            // Emoji ekle
-            resultContainer.innerHTML += "<p>" + (ders.gecme_notu >= 50 ? "😊" : "😢") + "</p>";
+            resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
+            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
         }
 
         // Sayfa yüklendiğinde ders isimlerini göster
