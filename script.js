@@ -37,6 +37,9 @@
             flex-direction: column;
             align-items: center;
         }
+        #gradeForm button {
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
