@@ -14,7 +14,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background: url('path/to/your/https://i.pinimg.com/originals/4f/97/1b/4f971b0d6bacdd50c85333a2af80ddaf.gif') center center fixed;
+            background: url('https://i.pinimg.com/originals/4f/97/1b/4f971b0d6bacdd50c85333a2af80ddaf.gif') center center fixed;
             background-size: cover;
         }
 
