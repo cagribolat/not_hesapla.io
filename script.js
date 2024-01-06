@@ -25,14 +25,5 @@
     </style>
 </head>
 <body>
-
-    <h1>NOT HESAPLAYICI</h1>
-
-    <!-- Geri kalan HTML kodları buraya gelecek -->
-
-    <script>
-        // JavaScript kodları buraya gelecek (eğer varsa)
-    </script>
-
-</body>
+        
 </html>
