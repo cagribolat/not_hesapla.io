@@ -61,16 +61,16 @@
         ];
 
         function ders_isimleri_listele(dersler) {
-            console.log("{:<5} {:<40}".format("No", "Ders"));
+            console.log("No     Ders");
             for (var i = 0; i < dersler.length; i++) {
-                console.log("{:<5} {:<40}".format(dersler[i].numara, dersler[i].ad));
+                console.log(dersler[i].numara + "      " + dersler[i].ad);
             }
         }
 
         function notlari_goster(ders) {
             console.log("\nSeçilen Dersin Notları:");
-            console.log("{:<5} {:<40} {:<15} {:<15} {:<15} {:<15}".format("No", "Ders", "Ara Sınav", "Final Sınavı", "Geçme Notu", "Durum"));
-            console.log("{:<5} {:<40} {:<15} {:<15} {:<15} {:<15}".format(ders.numara, ders.ad, ders.ara_sinav_puani, ders.final_sinav_puani, ders.gecme_notu, ders.durum));
+            console.log("No     Ders                                  Ara Sınav     Final Sınavı    Geçme Notu     Durum");
+            console.log(ders.numara + "      " + ders.ad + "                  " + ders.ara_sinav_puani + "                 " + ders.final_sinav_puani + "                  " + ders.gecme_notu + "                 " + ders.durum);
         }
 
         function calculateGrade() {
