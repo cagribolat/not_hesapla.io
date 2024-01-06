@@ -174,6 +174,11 @@
                 selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
                 selectedDers.not_hesapla();
                 notlari_goster(selectedDers);
+
+                // Formu sıfırla
+                document.getElementById("courseNumber").value = "";
+                document.getElementById("midtermGrade").value = "";
+                document.getElementById("finalGrade").value = "";
             }
         }
     </script>
