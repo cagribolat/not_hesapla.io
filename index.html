@@ -7,26 +7,91 @@
     <title>NOT HESAPLAYICI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji-awesome.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <style>
-        /* Diğer stillendirme kodları burada yer alacak */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://wallpapercave.com/uwp/uwp4193688.jpeg');
+            background-size: cover;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #resultContainer {
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .pass {
+            border: 2px solid green;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .fail {
+            border: 2px solid red;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #gradeForm button {
+            margin-top: 10px;
+        }
+        #dersListesi {
+            list-style-type: none; /* Marker'ları gizle */
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        #dersListesi li {
+            cursor: pointer;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #dersListesi li:hover {
+            background-color: #e0e0e0;
+        }
     </style>
 </head>
 <body>
 
     <h1>NOT HESAPLAYICI</h1>
 
-    <!-- Ders seçimi için açılır liste -->
+    <!-- Ders listesi -->
+    <div>
+        <h2>Dersler</h2>
+        <select id="courseNumber" name="courseNumber">
+            <option value="">Ders Seçiniz</option>
+            <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
+            <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
+            <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
+            <option value="4">TIBBİ BELGELEME</option>
+            <option value="5">TIP TERİMLERİ</option>
+        </select>
+    </div>
+
+    <!-- Not hesaplama formu -->
     <div class="form-container">
         <form id="gradeForm">
-            <label for="courseNumber">Ders Seçimi:</label>
-            <select id="courseNumber" name="courseNumber">
-                <option value="" selected disabled>Lütfen bir ders seçin</option>
-                <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
-                <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
-                <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
-                <option value="4">TIBBİ BELGELEME</option>
-                <option value="5">TIP TERİMLERİ</option>
-            </select>
-
             <label for="midtermGrade">Ara Sınav:</label>
             <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
 
@@ -41,7 +106,78 @@
     <div id="resultContainer"></div>
 
     <script>
-        /* JavaScript kodları burada yer alacak */
+        class Ders {
+            constructor(numara, ad) {
+                this.numara = numara;
+                this.ad = ad;
+                this.ara_sinav_puani = 0;
+                this.final_sinav_puani = 0;
+                this.gecme_notu = 0;
+                this.durum = "";
+            }
+
+            not_hesapla() {
+                this.gecme_notu = (this.ara_sinav_puani * 0.3) + (this.final_sinav_puani * 0.7);
+                this.durum = this.gecme_notu >= 50 ? "Geçtiniz" : "Geçemediniz";
+            }
+        }
+
+        var dersler = [
+            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
+            new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
+            new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
+            new Ders(4, "TIBBİ BELGELEME"),
+            new Ders(5, "TIP TERİMLERİ")
+        ];
+
+        function ders_isimleri_listele(dersler) {
+            var dersListesi = document.getElementById("courseNumber");
+            for (var i = 0; i < dersler.length; i++) {
+                var option = document.createElement("option");
+                option.value = i + 1;
+                option.textContent = dersler[i].ad;
+                dersListesi.appendChild(option);
+            }
+        }
+
+        function notlari_goster(ders) {
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
+            resultContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
+            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
+            resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
+            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
+
+            // Emoji ekleme
+            var emojiElement = document.createElement("span");
+            emojiElement.innerHTML = ders.gecme_notu >= 50 ? "&#x1F604;" : "&#x1F641;";
+            emojiElement.style.fontSize = "24px";
+            resultContainer.appendChild(emojiElement);
+        }
+
+        // Sayfa yüklendiğinde ders isimlerini göster
+        ders_isimleri_listele(dersler);
+
+        function calculateGrade() {
+            var selectedCourseNumber = document.getElementById("courseNumber").value;
+            var selectedDers = null;
+
+            for (var i = 0; i < dersler.length; i++) {
+                if (i + 1 == selectedCourseNumber) {
+                    selectedDers = dersler[i];
+                    break;
+                }
+            }
+
+            if (selectedDers) {
+                selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
+                selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
+                selectedDers.not_hesapla();
+                notlari_goster(selectedDers);
+            }
+        }
     </script>
 
 </body>
