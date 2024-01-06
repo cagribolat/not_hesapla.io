@@ -20,16 +20,32 @@ class Ders {
 }
 
 function dersIsimleriListele(dersler) {
-    console.log("%-5s %-40s", "No", "Ders");
-    for (const ders of dersler) {
-        console.log("%-5s %-40s", ders.numara, ders.ad);
-    }
+    const table = document.getElementById("dersler-table");
+    
+    dersler.forEach(ders => {
+        const row = table.insertRow(-1);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.innerHTML = ders.numara;
+        cell2.innerHTML = ders.ad;
+
+        row.addEventListener("click", function() {
+            ders.notlariGir();
+            notlariGoster(ders);
+        });
+    });
 }
 
 function notlariGoster(ders) {
-    console.log("\nSeçilen Dersin Notları:");
-    console.log("%-5s %-40s %-15s %-15s %-15s %-15s", "No", "Ders", "Ara Sınav", "Final Sınavı", "Geçme Notu", "Durum");
-    console.log("%-5s %-40s %-15s %-15s %-15s %-15s", ders.numara, ders.ad, ders.araSinavPuani, ders.finalSinavPuani, ders.gecmeNotu, ders.durum);
+    alert(`
+        Seçilen Dersin Notları:
+        No: ${ders.numara}
+        Ders: ${ders.ad}
+        Ara Sınav: ${ders.araSinavPuani}
+        Final Sınavı: ${ders.finalSinavPuani}
+        Geçme Notu: ${ders.gecmeNotu}
+        Durum: ${ders.durum}
+    `);
 }
 
 const dersler = [
@@ -40,31 +56,4 @@ const dersler = [
     new Ders(5, "TIP TERİMLERİ")
 ];
 
-while (true) {
-    dersIsimleriListele(dersler);
-    const secim = prompt("\nHangi dersin notlarını girmek istiyorsunuz? (Çıkış için 'q'): ");
-
-    if (secim.toLowerCase() === 'q') {
-        break;
-    }
-
-    let dersBulundu = false;
-    for (const ders of dersler) {
-        if (!isNaN(secim) && parseInt(secim) === ders.numara) {
-            ders.notlariGir();
-            notlariGoster(ders);
-            dersBulundu = true;
-            break;
-        }
-    }
-
-    if (!dersBulundu) {
-        console.log("Hatalı ders numarası, lütfen tekrar deneyin.");
-    }
-
-    // Sadece geçme notu açıklandıktan sonra mesajı göster
-    if (dersBulundu) {
-        console.log("");
-        break;
-    }
-}
+dersIsimleriListele(dersler);
