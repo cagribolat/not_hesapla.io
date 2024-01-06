@@ -14,8 +14,24 @@
         }
 
         .equal-sign {
-            font-size: 24px; /* İstediğiniz font boyutunu burada belirleyebilirsiniz */
-            color: red; /* İstediğiniz renk değerini burada belirleyebilirsiniz */
+            font-size: 24px;
+            color: red;
+        }
+
+        /* Yeni stil eklenen kısım */
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
+        .pass {
+            border-color: green;
+        }
+
+        .fail {
+            border-color: red;
         }
     </style>
 </head>
@@ -52,10 +68,10 @@
     </form>
 
     <!-- Notları gösterme bölümü -->
-    <div id="resultContainer"></div>
+    <div id="resultContainer" class="result-container"></div>
 
     <script>
-        // Daha önceki JavaScript kodlarını buraya ekleyin
+        // JavaScript kodlarını buraya ekleyin
     </script>
 
 </body>
