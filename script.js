@@ -1,59 +1,58 @@
-class Ders {
-    constructor(numara, ad) {
-        this.numara = numara;
-        this.ad = ad;
-        this.araSinavPuani = 0;
-        this.finalSinavPuani = 0;
-        this.gecmeNotu = 0;
-    }
+jQuery(document).ready(function ($) {
 
-    notlariGir() {
-        this.araSinavPuani = parseFloat(prompt("Ara Sınav Puanı: "));
-        this.finalSinavPuani = parseFloat(prompt("Final Sınavı Puanı: "));
-        this.notHesapla();
-    }
+    function FilterInput(event) {
+        var keyCode = ('which' in event) ? event.which : event.keyCode;
 
-    notHesapla() {
-        this.gecmeNotu = (this.araSinavPuani * 0.3) + (this.finalSinavPuani * 0.7);
-        this.durum = this.gecmeNotu >= 50 ? "Geçtiniz" : "Geçemediniz";
-    }
-}
+        isNotWanted = (keyCode == 50 || keyCode == 51 || keyCode == 52 || keyCode == 53 || keyCode == 54 || keyCode == 55 || keyCode == 56 || keyCode == 57 || keyCode == 98 || keyCode == 99 || keyCode == 100 || keyCode == 101 || keyCode == 102 || keyCode == 103 || keyCode == 104 || keyCode == 105);
+        return !isNotWanted;
+    };
 
-function dersIsimleriListele(dersler) {
-    const table = document.getElementById("dersler-table");
-    
-    dersler.forEach(ders => {
-        const row = table.insertRow(-1);
-        const cell1 = row.insertCell(0);
-        const cell2 = row.insertCell(1);
-        cell1.innerHTML = ders.numara;
-        cell2.innerHTML = ders.ad;
+    function handlePaste(e) {
+        var clipboardData, pastedData;
 
-        row.addEventListener("click", function() {
-            ders.notlariGir();
-            notlariGoster(ders);
+        // Get pasted data via clipboard API
+        clipboardData = e.clipboardData || window.clipboardData;
+        pastedData = clipboardData.getData('Text').toUpperCase();
+
+        if (pastedData.indexOf('E') > -1) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    };
+
+    // Disable scroll when focused on a number input.
+    $('form').on('focus', 'input[type=number]', function (e) {
+        $(this).on('wheel', function (e) {
+            e.preventDefault();
         });
     });
-}
 
-function notlariGoster(ders) {
-    alert(`
-        Seçilen Dersin Notları:
-        No: ${ders.numara}
-        Ders: ${ders.ad}
-        Ara Sınav: ${ders.araSinavPuani}
-        Final Sınavı: ${ders.finalSinavPuani}
-        Geçme Notu: ${ders.gecmeNotu}
-        Durum: ${ders.durum}
-    `);
-}
+    // Restore scroll on number inputs.
+    $('form').on('blur', 'input[type=number]', function (e) {
+        $(this).off('wheel');
+    });
 
-const dersler = [
-    new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
-    new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
-    new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
-    new Ders(4, "TIBBİ BELGELEME"),
-    new Ders(5, "TIP TERİMLERİ")
-];
+    // Disable up and down keys.
+    $('form').on('keydown', 'input[type=number]', function (e) {
+        if (e.which == 38 || e.which == 40)
+            e.preventDefault();
+    });
 
-dersIsimleriListele(dersler);
+    // Not Hesaplama Fonksiyonu
+    function calculateGrade() {
+        var araSinavPuan = parseFloat($("#araSinavPuan").val());
+        var finalSinavPuan = parseFloat($("#finalSinavPuan").val());
+        var gecmeNotu = (araSinavPuan * 0.3) + (finalSinavPuan * 0.7);
+
+        // Not Hesaplamalarını Göster
+        $("#gecmeNotu").val(gecmeNotu.toFixed(2));
+        $("#durum").text(gecmeNotu >= 50 ? "Geçtiniz" : "Geçemediniz");
+    }
+
+    // Form Gönderildiğinde Not Hesaplamasını Çağır
+    $("form").submit(function (e) {
+        e.preventDefault();
+        calculateGrade();
+    });
+
+});
