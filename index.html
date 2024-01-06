@@ -1,51 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="A handy calculator for calculating your grades.">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Calculator</title>
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-    <!-- Include other stylesheets and scripts as needed -->
 </head>
 <body>
-    <div class="container">
-        <!-- Your existing code here -->
 
-        <h1>Grade Calculator</h1>
-        <p>Free interactive grade calculator</p>
+    <h1>Grade Calculator</h1>
 
-        <div class="input-group outerInputDiv input-group-lg col-lg-10 offset-lg-1">
-            <div class="input-group innerInputDiv spinner col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text inputLabel" id="inputGroup-sizing-lg">Weight(kg)</span>
-                </div>
-                <input type="number" pattern="[0-9]*" onkeydown="return( FilterInput(event) || event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" onpaste="handlePaste(event)" class="decimalInputs form-control" id="operand1Decimal" value="72">
-                <div class="input-group-btn-vertical">
-                    <button class="btn btn-default plus" id="operand1DecimalPlus" type="button"><i class="fa fa-plus"></i></button>
-                    <button class="btn btn-default minus" id="operand1DecimalMinus" type="button"><i class="fa fa-minus"></i></button>
-                </div>
-            </div>
-        </div>
+    <form id="gradeForm">
+        <label for="courseNumber">Course Number:</label>
+        <input type="text" id="courseNumber" name="courseNumber">
 
-        <!-- Repeat similar blocks for other inputs -->
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName">
 
-        <div class="input-group outerInputDiv input-group-lg col-lg-10 offset-lg-1">
-            <div class="input-group innerInputDiv spinner col-lg-12">
-                <div class="input-group-prepend">
-                    <span class="input-group-text inputLabel" id="inputGroup-sizing-lg">BMI Result</span>
-                </div>
-                <input onclick="this.select();" type="number" pattern="[0-9]*" onkeydown="return( FilterInput(event) || event.ctrlKey || event.altKey || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) || (95<event.keyCode && event.keyCode<106) || (event.keyCode==8) || (event.keyCode==9) || (event.keyCode>34 && event.keyCode<40) || (event.keyCode==46) )" onpaste="handlePaste(event)" class="decimalInputs form-control" id="resultDecimal" value="23.51" readonly>
-                <div class="input-group-btn-vertical">
-                    <button class="btn btn-default" id="resultCopy" type="button" data-clipboard-target="#resultDecimal"><i class="fa fa-copy"></i></button>
-                </div>
-            </div>
-        </div>
+        <label for="midtermGrade">Midterm Grade:</label>
+        <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
 
-        <!-- Your existing code here -->
-    </div>
-    <script src="js/scripts.js"></script>
-    <!-- Include other scripts as needed -->
+        <label for="finalGrade">Final Grade:</label>
+        <input type="number" id="finalGrade" name="finalGrade" step="0.1">
+
+        <button type="button" onclick="calculateGrade()">Calculate Grade</button>
+    </form>
+
+    <div id="resultContainer"></div>
+
+    <script>
+        function calculateGrade() {
+            // Bu alana Python kodunu ekleyebilirsiniz.
+            // Kullanıcı girişlerini almak ve sonucu hesaplamak için JavaScript kullanabilirsiniz.
+            // Sonucu 'resultContainer' adlı bir div içine ekleyebilirsiniz.
+        }
+    </script>
+
 </body>
 </html>
