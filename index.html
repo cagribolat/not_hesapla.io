@@ -69,7 +69,6 @@
 
         function ders_isimleri_listele(dersler) {
             var dersListesi = document.getElementById("dersListesi");
-            dersListesi.innerHTML = "<h3>Ders Listesi</h3>";
             for (var i = 0; i < dersler.length; i++) {
                 var listItem = document.createElement("li");
                 listItem.textContent = dersler[i].numara + " " + dersler[i].ad;
@@ -101,23 +100,4 @@
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
-            resultContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
-        }
-
-        // Sayfa yüklendiğinde ders listesini göster
-        ders_isimleri_listele(dersler);
-
-        function calculateGrade() {
-            var selectedCourseNumber = document.getElementById("courseNumber").value;
-            var selectedDers = null;
-
-            for (var i = 0; i < dersler.length; i++) {
-                if (dersler[i].numara == selectedCourseNumber) {
-                    selectedDers = dersler[i];
-                    break;
-                }
-            }
-
-            if (selectedDers) {
-                selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
-                selectedDers
+            resultContainer.innerHTML += "<p>Durum:
