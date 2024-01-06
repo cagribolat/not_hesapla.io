@@ -1,26 +1,46 @@
-function calculateGrade() {
-    var selectedCourseNumber = document.getElementById("courseNumber").value;
-    var selectedDers = null;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOT HESAPLAYICI</title>
+    <style>
+        /* CSS Stilleri */
+    </style>
+</head>
+<body>
 
-    for (var i = 0; i < dersler.length; i++) {
-        if (dersler[i].numara == selectedCourseNumber) {
-            selectedDers = dersler[i];
-            break;
+    <!-- HTML İçeriği -->
+
+    <script>
+        // Temel sınıf ve derslerin oluşturulması
+        class Ders {
+            // Ders sınıfı kodu
         }
-    }
 
-    if (selectedDers) {
-        selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
-        selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
-        selectedDers.not_hesapla();
-        notlari_goster(selectedDers);
+        var dersler = [
+            // Ders nesnelerinin oluşturulması
+        ];
 
-        // Formu sıfırla
-        document.getElementById("courseNumber").value = "";
-        document.getElementById("midtermGrade").value = "";
-        document.getElementById("finalGrade").value = "";
+        // Ders isimlerinin listelenmesi
+        function ders_isimleri_listele(dersler) {
+            // Liste oluşturma kodu
+        }
 
-        // Sayfayı yeniden yükle
-        window.location.reload();
-    }
-}
+        // Notları gösterme
+        function notlari_goster(ders) {
+            // Not gösterme kodu
+        }
+
+        // Sayfa yüklendiğinde ders isimlerini gösterme
+        ders_isimleri_listele(dersler);
+
+        // Not hesaplama
+        function calculateGrade() {
+            // Hesaplama kodu
+        }
+    </script>
+
+</body>
+</html>
