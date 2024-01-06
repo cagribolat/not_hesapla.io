@@ -29,23 +29,75 @@
     <div id="resultContainer"></div>
 
     <script>
+        // Ders sınıfını oluştur
+        class Ders {
+            constructor(numara, ad) {
+                this.numara = numara;
+                this.ad = ad;
+                this.ara_sinav_puani = 0;
+                this.final_sinav_puani = 0;
+                this.gecme_notu = 0;
+            }
+
+            notlari_gir() {
+                this.ara_sinav_puani = parseFloat(prompt("Ara Sınav Puanı: "));
+                this.final_sinav_puani = parseFloat(prompt("Final Sınavı Puanı: "));
+                this.not_hesapla();
+            }
+
+            not_hesapla() {
+                this.gecme_notu = (this.ara_sinav_puani * 0.3) + (this.final_sinav_puani * 0.7);
+                this.durum = this.gecme_notu >= 50 ? "Geçtiniz" : "Geçemediniz";
+            }
+        }
+
+        // Ders listesine her bir dersin numarası ve adı ekleniyor.
+        var dersler = [
+            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
+            new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
+            new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
+            new Ders(4, "TIBBİ BELGELEME"),
+            new Ders(5, "TIP TERİMLERİ")
+        ];
+
+        function ders_isimleri_listele(dersler) {
+            console.log("{:<5} {:<40}".format("No", "Ders"));
+            for (var i = 0; i < dersler.length; i++) {
+                console.log("{:<5} {:<40}".format(dersler[i].numara, dersler[i].ad));
+            }
+        }
+
+        function notlari_goster(ders) {
+            console.log("\nSeçilen Dersin Notları:");
+            console.log("{:<5} {:<40} {:<15} {:<15} {:<15} {:<15}".format("No", "Ders", "Ara Sınav", "Final Sınavı", "Geçme Notu", "Durum"));
+            console.log("{:<5} {:<40} {:<15} {:<15} {:<15} {:<15}".format(ders.numara, ders.ad, ders.ara_sinav_puani, ders.final_sinav_puani, ders.gecme_notu, ders.durum));
+        }
+
         function calculateGrade() {
-            // Kullanıcı girişlerini al
-            var courseNumber = document.getElementById("courseNumber").value;
-            var courseName = document.getElementById("courseName").value;
-            var midtermGrade = parseFloat(document.getElementById("midtermGrade").value);
-            var finalGrade = parseFloat(document.getElementById("finalGrade").value);
+            var selectedCourseNumber = document.getElementById("courseNumber").value;
+            var selectedDers = null;
 
-            // Notları hesapla
-            var passStatus = (midtermGrade * 0.3 + finalGrade * 0.7) >= 50 ? "Passed" : "Failed";
+            // Kullanıcının seçtiği dersi bul
+            for (var i = 0; i < dersler.length; i++) {
+                if (dersler[i].numara == selectedCourseNumber) {
+                    selectedDers = dersler[i];
+                    break;
+                }
+            }
 
-            // Sonucu HTML'e ekle
-            var resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = "<strong>Course Number:</strong> " + courseNumber +
-                                        "<br><strong>Course Name:</strong> " + courseName +
-                                        "<br><strong>Midterm Grade:</strong> " + midtermGrade +
-                                        "<br><strong>Final Grade:</strong> " + finalGrade +
-                                        "<br><strong>Pass Status:</strong> " + passStatus;
+            if (selectedDers) {
+                // Kullanıcının girdiği notları al
+                selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
+                selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
+
+                // Notları hesapla
+                selectedDers.not_hesapla();
+
+                // Sonuçları göster
+                notlari_goster(selectedDers);
+            } else {
+                console.log("Hatalı ders numarası, lütfen tekrar deneyin.");
+            }
         }
     </script>
 
