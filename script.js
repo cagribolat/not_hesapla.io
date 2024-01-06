@@ -97,7 +97,7 @@
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Geçme Notu: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.gecme_notu + "</span></p>";
-            resultContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
+            resultContainer.innerHTML += "<p>Durum: <span style='color: " + (ders.gecme_notu >= 50 ? "green" : "red") + "'>" + ders.durum + "</span></p>";
         }
 
         // Sayfa yüklendiğinde ders isimlerini göster
