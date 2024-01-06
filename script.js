@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            text-align: center;
+            text-align: top;
         }
 
         h1 {
