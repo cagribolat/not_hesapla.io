@@ -18,17 +18,22 @@
             margin-bottom: 20px;
         }
         #resultContainer {
-            border: 2px solid;
             padding: 10px;
             border-radius: 10px;
             margin-top: 20px;
             display: inline-block;
         }
         .pass {
-            border-color: green;
+            border: 2px solid green;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
         }
         .fail {
-            border-color: red;
+            border: 2px solid red;
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
         }
         .form-container {
             display: flex;
@@ -75,7 +80,17 @@
     <div id="resultContainer"></div>
 
     <script>
-        // ... (Önceki JavaScript kodu buraya gelecek)
+        // Önceki JavaScript kodu buraya gelecek
+        function notlari_goster(ders) {
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
+            resultContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
+            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
+            resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
+            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
+        }
     </script>
 
 </body>
