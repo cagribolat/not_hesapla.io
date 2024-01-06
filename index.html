@@ -10,6 +10,13 @@
 
     <h1>Grade Calculator</h1>
 
+    <!-- Ders listesi -->
+    <div>
+        <h2>Ders Listesi</h2>
+        <ul id="dersListesi"></ul>
+    </div>
+
+    <!-- Not hesaplama formu -->
     <form id="gradeForm">
         <label for="courseNumber">Course Number:</label>
         <input type="text" id="courseNumber" name="courseNumber">
@@ -26,10 +33,10 @@
         <button type="button" onclick="calculateGrade()">Calculate Grade</button>
     </form>
 
+    <!-- Notları gösterme bölümü -->
     <div id="resultContainer"></div>
 
     <script>
-        // Ders sınıfını oluştur
         class Ders {
             constructor(numara, ad) {
                 this.numara = numara;
@@ -37,6 +44,7 @@
                 this.ara_sinav_puani = 0;
                 this.final_sinav_puani = 0;
                 this.gecme_notu = 0;
+                this.durum = "";
             }
 
             notlari_gir() {
@@ -51,7 +59,6 @@
             }
         }
 
-        // Ders listesine her bir dersin numarası ve adı ekleniyor.
         var dersler = [
             new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
             new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
@@ -61,23 +68,49 @@
         ];
 
         function ders_isimleri_listele(dersler) {
-            console.log("No     Ders");
+            var dersListesi = document.getElementById("dersListesi");
+            dersListesi.innerHTML = "<h3>Ders Listesi</h3>";
             for (var i = 0; i < dersler.length; i++) {
-                console.log(dersler[i].numara + "      " + dersler[i].ad);
+                var listItem = document.createElement("li");
+                listItem.textContent = dersler[i].numara + " " + dersler[i].ad;
+                listItem.addEventListener("click", function () {
+                    var selectedCourseNumber = this.textContent.split(" ")[0];
+                    var selectedDers = null;
+
+                    for (var j = 0; j < dersler.length; j++) {
+                        if (dersler[j].numara == selectedCourseNumber) {
+                            selectedDers = dersler[j];
+                            break;
+                        }
+                    }
+
+                    if (selectedDers) {
+                        selectedDers.notlari_gir();
+                        notlari_goster(selectedDers);
+                    }
+                });
+                dersListesi.appendChild(listItem);
             }
         }
 
         function notlari_goster(ders) {
-            console.log("\nSeçilen Dersin Notları:");
-            console.log("No     Ders                                  Ara Sınav     Final Sınavı    Geçme Notu     Durum");
-            console.log(ders.numara + "      " + ders.ad + "                  " + ders.ara_sinav_puani + "                 " + ders.final_sinav_puani + "                  " + ders.gecme_notu + "                 " + ders.durum);
+            var resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
+            resultContainer.innerHTML += "<p>No: " + ders.numara + "</p>";
+            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
+            resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
+            resultContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
+            resultContainer.innerHTML += "<p>Durum: " + ders.durum + "</p>";
         }
+
+        // Sayfa yüklendiğinde ders listesini göster
+        ders_isimleri_listele(dersler);
 
         function calculateGrade() {
             var selectedCourseNumber = document.getElementById("courseNumber").value;
             var selectedDers = null;
 
-            // Kullanıcının seçtiği dersi bul
             for (var i = 0; i < dersler.length; i++) {
                 if (dersler[i].numara == selectedCourseNumber) {
                     selectedDers = dersler[i];
@@ -86,20 +119,5 @@
             }
 
             if (selectedDers) {
-                // Kullanıcının girdiği notları al
                 selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
-                selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
-
-                // Notları hesapla
-                selectedDers.not_hesapla();
-
-                // Sonuçları göster
-                notlari_goster(selectedDers);
-            } else {
-                console.log("Hatalı ders numarası, lütfen tekrar deneyin.");
-            }
-        }
-    </script>
-
-</body>
-</html>
+                selectedDers
