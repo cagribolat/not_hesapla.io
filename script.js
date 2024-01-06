@@ -57,6 +57,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: left;
         }
         #dersListesi li {
             cursor: pointer;
@@ -80,6 +81,9 @@
 <body>
 
     <h1>NOT HESAPLAYICI</h1>
+
+    <!-- Ders listesi -->
+    <ul id="dersListesi"></ul>
 
     <!-- Not hesaplama formu -->
     <div class="form-container">
