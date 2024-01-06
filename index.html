@@ -7,50 +7,7 @@
     <title>NOT HESAPLAYICI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji-awesome.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        #resultContainer {
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        .pass {
-            border: 2px solid green;
-            display: inline-block;
-            padding: 5px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .fail {
-            border: 2px solid red;
-            display: inline-block;
-            padding: 5px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #gradeForm button {
-            margin-top: 10px;
-        }
+        /* CSS Stilleri */
     </style>
 </head>
 <body>
@@ -182,32 +139,5 @@
             }
         }
     </script>
-function calculateGrade() {
-    var selectedCourseNumber = document.getElementById("courseNumber").value;
-    var selectedDers = null;
-
-    for (var i = 0; i < dersler.length; i++) {
-        if (dersler[i].numara == selectedCourseNumber) {
-            selectedDers = dersler[i];
-            break;
-        }
-    }
-
-    if (selectedDers) {
-        selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
-        selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
-        selectedDers.not_hesapla();
-        notlari_goster(selectedDers);
-
-        // Formu sıfırla
-        document.getElementById("courseNumber").value = "";
-        document.getElementById("midtermGrade").value = "";
-        document.getElementById("finalGrade").value = "";
-
-        // Sayfayı yeniden yükle
-        window.location.reload();
-    }
-}
-
 </body>
 </html>
