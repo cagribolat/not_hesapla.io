@@ -93,6 +93,10 @@
         <form id="gradeForm">
             <label for="courseNumber">Ders Numarası:</label>
             <select id="courseNumber" name="courseNumber">
+                <!-- Ders Numarası için Boş Seçenek -->
+                <option value="" disabled selected>Seçiniz</option>
+
+                <!-- Dersler -->
                 <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
                 <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
                 <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
@@ -143,7 +147,7 @@
         function notlari_goster(ders) {
             var resultContainer = document.getElementById("resultContainer");
             resultContainer.innerHTML = "<h3>Seçilen Dersin Notları</h3>";
-            resultContainer.innerHTML += "<p>" + ders.ad + "</p>";
+            resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
