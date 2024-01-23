@@ -1,2 +1,9 @@
-https://cagribolat.github.io/not_hesapla.io/
+<strong>https://cagribolat.github.io/not_hesapla.io</strong>
+
+
+
+
+
+
+                      
 ![Aöf Not Hesaplayıcı Bg](https://github.com/cagribolat/not_hesapla.io/assets/52715393/f3ab526f-065f-495a-a8c4-4ec4599fe34e)
