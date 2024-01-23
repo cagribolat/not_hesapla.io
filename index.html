@@ -93,7 +93,6 @@
         <form id="gradeForm">
             <label for="courseNumber">Ders Numarası:</label>
             <select id="courseNumber" name="courseNumber">
-                <option value="">-- Ders Seçiniz --</option>
                 <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
                 <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
                 <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
@@ -128,7 +127,7 @@
             }
 
             not_hesapla() {
-                this.gecme_notu = (this.ara_sinav_puani * 0.3) + (this.final_sinav_puani * 0.7);
+                this.gecme_notu = ((this.ara_sinav_puani * 0.3) + (this.final_sinav_puani * 0.7)).toFixed(); // Geçme notunu düzelt
                 this.durum = this.gecme_notu >= 50 ? "Geçtiniz" : "Geçemediniz";
             }
         }
