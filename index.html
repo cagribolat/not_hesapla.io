@@ -92,10 +92,7 @@
     <div class="form-container">
         <form id="gradeForm">
             <label for="courseNumber">Ders Numarası:</label>
-            <select id="courseNumber" name="courseNumber">
-                <!-- Ders Numarası için Boş Seçenek -->
-                <option value="" disabled selected>Seçiniz</option>
-
+            <select id="courseNumber" name="courseNumber" required>
                 <!-- Dersler -->
                 <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
                 <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
@@ -106,11 +103,11 @@
 
             <!-- Ara Sınav -->
             <label for="midtermGrade" style="font-weight: bold;">Ara Sınav:</label>
-            <input type="number" id="midtermGrade" name="midtermGrade" step="0.1">
+            <input type="number" id="midtermGrade" name="midtermGrade" step="0.1" required>
 
             <!-- Final Sınavı -->
             <label for="finalGrade" style="font-weight: bold;">Final Sınavı:</label>
-            <input type="number" id="finalGrade" name="finalGrade" step="0.1">
+            <input type="number" id="finalGrade" name="finalGrade" step="0.1" required>
 
             <button type="button" onclick="calculateGrade()">Hesapla</button>
         </form>
