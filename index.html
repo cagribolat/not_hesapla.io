@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AÖF NOT HESAPLAYICI</title>
+    <title>AÖF TDS NOT HESAPLAYICI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji-awesome.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
     <style>
         body {
@@ -32,6 +32,7 @@
             padding: 5px;
             border-radius: 5px;
             margin-top: 10px;
+            font-weight: bold; /* Bold yap */
         }
         .fail {
             border: 2px solid red;
@@ -39,6 +40,7 @@
             padding: 5px;
             border-radius: 5px;
             margin-top: 10px;
+            font-weight: bold; /* Bold yap */
         }
         .form-container {
             display: flex;
@@ -82,31 +84,69 @@
         #gradeForm label[for="courseNumber"] {
             font-weight: bold;
         }
+        .semester {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .semester h2 {
+            background-color: #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .course-list li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .course-list li span {
+            display: block;
+        }
+        .course-code {
+            font-weight: bold;
+        }
+        .course-name {
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
-    <h1>AÖF NOT HESAPLAYICI</h1>
+    <h1>AÖF TDS NOT HESAPLAYICI</h1>
 
-    <!-- Not hesaplama formu -->
+    <!-- Yarıyıl seçim bölümü -->
     <div class="form-container">
-        <form id="gradeForm">
-            <label for="courseNumber">Ders Numarası:</label>
-            <select id="courseNumber" name="courseNumber" required>
-                <!-- Dersler -->
-                <option value="1">TEMEL BİLGİ TEKNOLOJİLERİ I</option>
-                <option value="2">HALKLA İLİŞKİLER VE İLETİŞİM</option>
-                <option value="3">TEMEL SAĞLIK VE HASTALIK BİLGİSİ</option>
-                <option value="4">TIBBİ BELGELEME</option>
-                <option value="5">TIP TERİMLERİ</option>
-            </select>
+        <label for="semesterSelect">Yarıyıl Seçiniz:</label>
+        <select id="semesterSelect">
+            <option value="" disabled selected>Yarıyıl Seçiniz</option>
+            <option value="1">I. Yarıyıl</option>
+            <option value="2">II. Yarıyıl</option>
+            <option value="3">III. Yarıyıl</option>
+            <option value="4">IV. Yarıyıl</option>
+        </select>
+    </div>
 
-            <!-- Ara Sınav -->
-            <label for="midtermGrade" style="font-weight: bold;">Ara Sınav:</label>
+    <!-- Ders seçim bölümü -->
+    <div class="form-container">
+        <label for="courseSelect">Ders Seçiniz:</label>
+        <select id="courseSelect">
+            <option value="" disabled selected>Ders Seçiniz</option>
+        </select>
+
+        <!-- Not hesaplama formu -->
+        <form id="gradeForm">
+            <label for="midtermGrade">Ara Sınav:</label>
             <input type="number" id="midtermGrade" name="midtermGrade" step="0.1" required>
 
-            <!-- Final Sınavı -->
-            <label for="finalGrade" style="font-weight: bold;">Final Sınavı:</label>
+            <label for="finalGrade">Final Sınavı:</label>
             <input type="number" id="finalGrade" name="finalGrade" step="0.1" required>
 
             <button type="button" onclick="calculateGrade()">Hesapla</button>
@@ -133,13 +173,57 @@
             }
         }
 
-        var dersler = [
-            new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
-            new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
-            new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
-            new Ders(4, "TIBBİ BELGELEME"),
-            new Ders(5, "TIP TERİMLERİ")
-        ];
+        var yarıyılDersleri = {
+            1: [
+                new Ders(1, "TEMEL BİLGİ TEKNOLOJİLERİ I"),
+                new Ders(2, "HALKLA İLİŞKİLER VE İLETİŞİM"),
+                new Ders(3, "TEMEL SAĞLIK VE HASTALIK BİLGİSİ"),
+                new Ders(4, "TIBBİ BELGELEME"),
+                new Ders(5, "TIP TERİMLERİ")
+            ],
+            2: [
+                new Ders(6, "Temel Bilgi Teknolojileri II"),
+                new Ders(7, "İş Sağlığı ve Güvenliği"),
+                new Ders(8, "Toplantı ve Sunu Teknikleri"),
+                new Ders(9, "Temel İlk Yardım Bilgisi"),
+                new Ders(10, "Hasta Psikolojisi")
+            ],
+            3: [
+                new Ders(11, "Büro Teknolojileri"),
+                new Ders(12, "Mesleki Yazışmalar"),
+                new Ders(13, "Yönetici Asistanlığı"),
+                new Ders(14, "Sağlık Kurumları Yönetimi I")
+            ],
+            4: [
+                new Ders(15, "Ofis Yönetimi"),
+                new Ders(16, "Bilgi Yönetimi"),
+                new Ders(17, "İş Etiği"),
+                new Ders(18, "Sağlık Kurumları Yönetimi II"),
+                new Ders(19, "Atatürk İlkeleri ve İnkılap Tarihi II"),
+                new Ders(20, "Yabancı Dil III")
+            ]
+        };
+
+        var dersler = [];
+
+        function updateCourseSelect() {
+            var semesterSelect = document.getElementById("semesterSelect");
+            var courseSelect = document.getElementById("courseSelect");
+            var selectedSemester = semesterSelect.value;
+            
+            // Dersleri güncelle
+            courseSelect.innerHTML = '<option value="" disabled selected>Ders Seçiniz</option>'; // Önceki dersleri temizle
+
+            if (selectedSemester) {
+                dersler = yarıyılDersleri[selectedSemester];
+                dersler.forEach(function(ders) {
+                    var option = document.createElement("option");
+                    option.value = ders.numara;
+                    option.textContent = ders.ad;
+                    courseSelect.appendChild(option);
+                });
+            }
+        }
 
         function notlari_goster(ders) {
             var resultContainer = document.getElementById("resultContainer");
@@ -147,35 +231,29 @@
             resultContainer.innerHTML += "<p>Ders: " + ders.ad + "</p>";
             resultContainer.innerHTML += "<p>Ara Sınav: " + ders.ara_sinav_puani + "</p>";
             resultContainer.innerHTML += "<p>Final Sınavı: " + ders.final_sinav_puani + "</p>";
-            resultContainer.innerHTML += "<p>Geçme Notu: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.gecme_notu + "</span></p>";
-            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.gecme_notu >= 50 ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
-
-            // Emoji ekleme
-            var emojiElement = document.createElement("span");
-            emojiElement.innerHTML = ders.gecme_notu >= 50 ? "&#x1F604;" : "&#x1F641;";
-            emojiElement.style.fontSize = "24px";
-            resultContainer.appendChild(emojiElement);
+            resultContainer.innerHTML += "<p>Geçme Notu: " + ders.gecme_notu + "</p>";
+            resultContainer.innerHTML += "<p>Durum: <span class='" + (ders.durum === "Geçtiniz" ? "pass" : "fail") + "'>" + ders.durum + "</span></p>";
         }
 
         function calculateGrade() {
-            var selectedCourseNumber = document.getElementById("courseNumber").value;
-            var selectedDers = null;
+            var courseSelect = document.getElementById("courseSelect");
+            var midtermGrade = parseFloat(document.getElementById("midtermGrade").value);
+            var finalGrade = parseFloat(document.getElementById("finalGrade").value);
 
-            for (var i = 0; i < dersler.length; i++) {
-                if (dersler[i].numara == selectedCourseNumber) {
-                    selectedDers = dersler[i];
-                    break;
+            if (courseSelect.value && !isNaN(midtermGrade) && !isNaN(finalGrade)) {
+                var selectedCourse = dersler.find(ders => ders.numara == courseSelect.value);
+                if (selectedCourse) {
+                    selectedCourse.ara_sinav_puani = midtermGrade;
+                    selectedCourse.final_sinav_puani = finalGrade;
+                    selectedCourse.not_hesapla();
+                    notlari_goster(selectedCourse);
                 }
-            }
-
-            if (selectedDers) {
-                selectedDers.ara_sinav_puani = parseFloat(document.getElementById("midtermGrade").value);
-                selectedDers.final_sinav_puani = parseFloat(document.getElementById("finalGrade").value);
-                selectedDers.not_hesapla();
-                notlari_goster(selectedDers);
+            } else {
+                alert("Lütfen tüm alanları doldurduğunuzdan emin olun.");
             }
         }
-    </script>
 
+        document.getElementById("semesterSelect").addEventListener("change", updateCourseSelect);
+    </script>
 </body>
 </html>
